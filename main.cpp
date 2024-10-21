@@ -16,6 +16,11 @@ using namespace miral::toolkit;
 
 struct ShellManager {
     std::vector<pid_t> shell_pids;
+
+    void add_shell_app(const pid_t new_pid) {
+        shell_pids.push_back(new_pid);
+    }
+
     // todo: add function to filter pid's
     // todo: apply new extensions if found
 };
@@ -51,9 +56,11 @@ int main(int argc, char const *argv[]) {
     // Uses gnome-terminal as the default terminal
     std::string selected_terminal{};
     const std::function run_desired_terminal = [&](std::string const &term) {
-        if (!term.empty()) {
-            selected_terminal = term;
+        if (term.empty()) {
+            return;
         }
+
+        selected_terminal = term;
     };
 
     // Uses Firefox as the default browser
@@ -64,15 +71,32 @@ int main(int argc, char const *argv[]) {
         }
     };
 
+    ShellManager shell_manager{};
+
+    const std::function add_shell_applications = [&](std::vector<std::string const> &shell_apps) {
+        if (shell_apps.empty()) {
+            return;
+        }
+        for (auto const &app: shell_apps) {
+            const pid_t pid = client_launcher.launch(std::vector{app});
+            shell_manager.add_shell_app(pid);
+        }
+    };
+
+    // todo: iterate through shell ID's and add some extra wayland features
+
     const std::function handle_move = [&](MirEvent const *event) {
         if (mir_event_get_type(event) == mir_event_type_resize) {
             runner.stop();
             return false;
         }
+        /*
         printf("event_type: %d\n", mir_event_get_type(event));
         printf("HELLO\n");
+        */
         return false;
     };
+
 
     const std::function shortcuts = [&](MirEvent const *event) {
         // Must be input events
@@ -118,14 +142,11 @@ int main(int argc, char const *argv[]) {
                 return false;
         };
     };
-
-
     return runner.run_with(
         {
             set_window_management_policy<MinimalWindowManager>(),
             client_launcher,
             extensions,
-            Keymap{},
             ConfigurationOption{
                 run_startup_apps, "startup-app", "App to run at startup"
             },
@@ -137,8 +158,8 @@ int main(int argc, char const *argv[]) {
                 run_desired_browser, "browser",
                 "Browser to launch after pressing CTRL+ALT+b (defaults to Firefox)", "firefox"
             },
+            Keymap{},
             AppendEventFilter{handle_move},
-
             AppendEventFilter{shortcuts},
         }
 
