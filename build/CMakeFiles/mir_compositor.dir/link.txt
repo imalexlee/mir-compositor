@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/mir_compositor.dir/src/main.cpp.o CMakeFiles/mir_compositor.dir/src/shell_manager.cpp.o -o mir_compositor  -L/usr/lib/x86_64-linux-gnu -lmiral -lmircommon -lmircore
