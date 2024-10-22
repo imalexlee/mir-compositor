@@ -1,0 +1,4 @@
+/home/ubuntu/CLionProjects/mir-compositor/build/CMakeFiles/mir_compositor.dir
+/home/ubuntu/CLionProjects/mir-compositor/build/CMakeFiles/TEST.dir
+/home/ubuntu/CLionProjects/mir-compositor/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/CLionProjects/mir-compositor/build/CMakeFiles/rebuild_cache.dir

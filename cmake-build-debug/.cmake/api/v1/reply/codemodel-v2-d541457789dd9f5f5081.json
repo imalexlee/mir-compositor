@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "mir_compositor",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -38,8 +40,15 @@
 			[
 				{
 					"directoryIndex" : 0,
+					"id" : "TEST::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TEST-Debug-308159ad697857a8b401.json",
+					"name" : "TEST",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "mir_compositor::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-mir_compositor-Debug-599c9aadf45ff8fab843.json",
+					"jsonFile" : "target-mir_compositor-Debug-f8198244b3d3ae0ff06e.json",
 					"name" : "mir_compositor",
 					"projectIndex" : 0
 				}

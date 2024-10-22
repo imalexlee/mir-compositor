@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/TEST.dir/test/tests.cpp.o CMakeFiles/TEST.dir/src/shell_manager.cpp.o -o TEST  -L/usr/lib/x86_64-linux-gnu -lmiral -lmircommon -lmircore
