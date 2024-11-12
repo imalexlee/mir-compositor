@@ -20,7 +20,7 @@ int main(int argc, char const *argv[]) {
     /*
      * 1. Allow clients to receive unobstructed pointer events
      * 2. Describe output regions in desktop-oriented way
-     * 2. Enable XDG-shell for the ability to create surface handles for graphical applications
+     * 3. Enable XDG-shell for the ability to create surface handles for graphical applications
      *      EX. Vulkan applications can retrieve rendering surfaces through Wayland by using
      *      vkCreateWaylandSurfaceKHR(...). This is only possible if XDG-shell is enabled.
      */
@@ -69,8 +69,6 @@ int main(int argc, char const *argv[]) {
     };
 
     const std::array privileged_protocols = {
-        WaylandExtensions::zwlr_layer_shell_v1,
-        WaylandExtensions::zxdg_output_manager_v1,
         WaylandExtensions::zwlr_foreign_toplevel_manager_v1,
         WaylandExtensions::zwp_input_method_manager_v2,
         WaylandExtensions::zwlr_virtual_pointer_manager_v1,
@@ -120,7 +118,7 @@ int main(int argc, char const *argv[]) {
             case XKB_KEY_T:
                 std::ignore = ext_client_launcher.launch({selected_terminal});
                 return false;
-
+            // Launch desired browser
             case XKB_KEY_B:
                 std::ignore = ext_client_launcher.launch({selected_browser});
                 return false;
