@@ -32,6 +32,6 @@ public:
                               std::span<char const *const> protocols);
 
 private:
- std::pmr::vector<pid_t> shell_pids;
+ std::vector<pid_t> shell_pids;
 };
 #endif //SHELLMANAGER_H
